@@ -90,8 +90,25 @@ test('create Daemon', () => {
 	);
 });
 
-test('check name length', () => {
-  expect(new characters.Bowerman('CharacterName')).toThrow();
+test('check long name', () => {
+  expect(() => {
+    function longName() {
+      const name = new characters.Bowerman('LongCharacterName');
+      return name;
+    }
+    longName();
+  }).toThrow('Name must be between 2 and 10 characters');
+});
+
+test('check short name', () => {
+  expect(() => {
+    characters.Bowerman('C');
+  }).toThrow();
+});
+
+test('check name string', () => {
+  const char = new characters.Bowerman('CharName');
+  expect(typeof char.name).toBe('string')
 });
 
 test('take damage', () => {
@@ -129,15 +146,17 @@ test('levelUp', () => {
 test('LevelUp < 0 health', () => {
 	const bowerman = new characters.Bowerman('Char1');
 	bowerman.damage(150);
-	bowerman.levelUp();
 
-	expect(bowerman).toThrow()
+	expect(() => {
+		bowerman.levelUp()
+	}).toThrow();
 })
 
 test('Damage < 0 health', () => {
 	const bowerman = new characters.Bowerman('Char1');
 	bowerman.damage(150);
-	bowerman.damage(10);
 
-	expect(bowerman).toThrow()
+	expect(() => {
+		bowerman.damage(10);
+	}).toThrow();
 })
