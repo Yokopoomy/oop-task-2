@@ -123,7 +123,7 @@ test('check name string', () => {
   }).toThrow('Имя персонажа должно быть "Тип - Строка"');
 });
 
-test('check name string', () => {
+test('check get name', () => {
   const daemon = new characters.Daemon();
   daemon.name = 'Char6';
 
