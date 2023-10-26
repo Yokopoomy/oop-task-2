@@ -5,6 +5,9 @@ class Character {
   }
 
   set name(value) {
+    if (!(typeof value === 'string')) {
+      throw new Error('Имя персонажа должно быть "Тип - Строка"');
+    }
     if (!(value.length >= 2 && value.length <= 10)) {
       throw new Error('Имя персонажа должно быть от 2 до 10 символов');
     }

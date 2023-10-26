@@ -116,9 +116,18 @@ test('check short name', () => {
 });
 
 test('check name string', () => {
-  const char = new characters.Bowerman();
-  char.name = 'CharName';
-  expect(typeof char.name).toBe('string');
+  expect(() => {
+    const char = new characters.Bowerman();
+    char.name = 123;
+    return char;
+  }).toThrow('Имя персонажа должно быть "Тип - Строка"');
+});
+
+test('check name string', () => {
+  const daemon = new characters.Daemon();
+  daemon.name = 'Char6';
+
+  expect(daemon.name).toEqual('Char6');
 });
 
 test('take damage', () => {
