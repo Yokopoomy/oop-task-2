@@ -1,11 +1,12 @@
 import * as characters from '../character';
 
 test('create Bowerman', () => {
-  const bowerman = new characters.Bowerman('Char1');
+  const bowerman = new characters.Bowerman();
+  bowerman.name = 'Char1';
 
   expect(bowerman).toEqual(
     {
-      name: 'Char1',
+      _name: 'Char1',
       health: 100,
       level: 1,
       type: 'Bowerman',
@@ -16,11 +17,12 @@ test('create Bowerman', () => {
 });
 
 test('create Swordsman', () => {
-  const swordsman = new characters.Swordsman('Char2');
+  const swordsman = new characters.Swordsman();
+  swordsman.name = 'Char2';
 
   expect(swordsman).toEqual(
     {
-      name: 'Char2',
+      _name: 'Char2',
       health: 100,
       level: 1,
       type: 'Swordsman',
@@ -31,11 +33,12 @@ test('create Swordsman', () => {
 });
 
 test('create Magician', () => {
-  const magician = new characters.Magician('Char3');
+  const magician = new characters.Magician();
+  magician.name = 'Char3';
 
   expect(magician).toEqual(
     {
-      name: 'Char3',
+      _name: 'Char3',
       health: 100,
       level: 1,
       type: 'Magician',
@@ -46,11 +49,12 @@ test('create Magician', () => {
 });
 
 test('create Undead', () => {
-  const undead = new characters.Undead('Char4');
+  const undead = new characters.Undead();
+  undead.name = 'Char4';
 
   expect(undead).toEqual(
     {
-      name: 'Char4',
+      _name: 'Char4',
       health: 100,
       level: 1,
       type: 'Undead',
@@ -61,11 +65,12 @@ test('create Undead', () => {
 });
 
 test('create Zombie', () => {
-  const zombie = new characters.Zombie('Char5');
+  const zombie = new characters.Zombie();
+  zombie.name = 'Char5';
 
   expect(zombie).toEqual(
     {
-      name: 'Char5',
+      _name: 'Char5',
       health: 100,
       level: 1,
       type: 'Zombie',
@@ -76,11 +81,12 @@ test('create Zombie', () => {
 });
 
 test('create Daemon', () => {
-  const daemon = new characters.Daemon('Char6');
+  const daemon = new characters.Daemon();
+  daemon.name = 'Char6';
 
   expect(daemon).toEqual(
     {
-      name: 'Char6',
+      _name: 'Char6',
       health: 100,
       level: 1,
       type: 'Daemon',
@@ -93,31 +99,36 @@ test('create Daemon', () => {
 test('check long name', () => {
   expect(() => {
     function longName() {
-      const name = new characters.Bowerman('LongCharacterName');
-      return name;
+      const char = new characters.Bowerman();
+      char.name = 'LongCharacterName';
+      return char;
     }
     longName();
-  }).toThrow('Name must be between 2 and 10 characters');
+  }).toThrow('Имя персонажа должно быть от 2 до 10 символов');
 });
 
 test('check short name', () => {
   expect(() => {
-    characters.Bowerman('C');
-  }).toThrow();
+    const char = new characters.Bowerman();
+    char.name = 'L';
+    return char;
+  }).toThrow('Имя персонажа должно быть от 2 до 10 символов');
 });
 
 test('check name string', () => {
-  const char = new characters.Bowerman('CharName');
+  const char = new characters.Bowerman();
+  char.name = 'CharName';
   expect(typeof char.name).toBe('string');
 });
 
 test('take damage', () => {
-  const bowerman = new characters.Bowerman('Char1');
+  const bowerman = new characters.Bowerman();
+  bowerman.name = 'Char1';
   bowerman.damage(100);
 
   expect(bowerman).toEqual(
     {
-      name: 'Char1',
+      _name: 'Char1',
       health: 25,
       level: 1,
       type: 'Bowerman',
@@ -129,11 +140,12 @@ test('take damage', () => {
 
 test('levelUp', () => {
   const bowerman = new characters.Bowerman('Char1');
+  bowerman.name = 'Char1';
   bowerman.levelUp();
 
   expect(bowerman).toEqual(
     {
-      name: 'Char1',
+      _name: 'Char1',
       health: 100,
       level: 2,
       type: 'Bowerman',
